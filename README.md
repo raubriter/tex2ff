@@ -4,21 +4,21 @@ A helper script for [mt](https://github.com/raubriter/mt).
 
 ## Overview
 
-`tex2ff` is meant to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, such as the one at:
+`tex2ff` is intended to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, as in the project at:
 
 ```
 https://www.overleaf.com/project/6ae30f8db91643c343a814d7/share#d6d9bd9c5f929d0da5930b6a469dff31fb54f150b024923c
 ```
 
-That is to say, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos">ENEM between 2009 and 2025</a> are rewritten from scratch like this:
+That is, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos">ENEM between 2009 and 2025</a> are rewritten from scratch as follows:
 
 <img width="1913" height="926" alt="image" src="https://github.com/user-attachments/assets/94b9c17e-bc51-43f6-8bb2-18d0ff3dbf97" /><br/><br/>
 
-**NOTE:** The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` is then passed to `tex2ff`, which produces one `.bz2` per project. Automatic download is intentionally out of scope — the Overleaf endpoint requires an authenticated session cookie.
+**Note:** The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` file is then passed to `tex2ff`, which produces one `.bz2` file per project. Automatic download is intentionally out of scope; the Overleaf endpoint requires an authenticated session cookie.
 
 ## Structure
 
-Each input `.zip` must contain one directory per project, and each such directory must contain a `main.tex`:
+Each input `.zip` must contain one directory per project, and each such directory must contain a `main.tex` file:
 
 ```
 2009.zip
@@ -42,11 +42,11 @@ Each input `.zip` must contain one directory per project, and each such director
 └── ...
 ```
 
-The same layout applies to `2010.zip`, `2011.zip`, and so on. A single wrapping directory (e.g. `2009/2009-136-D/main.tex`) is also accepted, since `main.tex` is located by name rather than by fixed depth.
+The same layout applies to `2010.zip`, `2011.zip`, and so on. A single wrapping directory (e.g., `2009/2009-136-D/main.tex`) is also accepted, since `main.tex` is located by name rather than by fixed depth.
 
 ## Dependencies
 
-`tex2ff` depends on the following tools, most of them already present in Unix-like systems:
+`tex2ff` depends on the following tools, most of which are already present in Unix-like systems:
 
 - pdflatex ([TeX Live](https://www.tug.org/texlive/))
 - pdftoppm ([Poppler](https://poppler.freedesktop.org/))
@@ -66,7 +66,7 @@ apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
 tex2ff archive.zip [...]
 ```
 
-Each `.zip` is extracted to a temporary directory, every `main.tex` found inside is compiled, and the result is written next to the caller as `<project>.ff.bz2`, where `<project>` is the name of the directory containing `main.tex`.
+Each `.zip` file is extracted to a temporary directory, every `main.tex` found inside is compiled, and the result is written next to the caller as `<project>.ff.bz2`, where `<project>` is the name of the directory containing `main.tex`.
 
 Example:
 
