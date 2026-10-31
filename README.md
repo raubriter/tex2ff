@@ -2,22 +2,6 @@
 
 A helper script for [mt](https://github.com/raubriter/mt).
 
-## Dependencies
-
-`tex2ff` depends on the following tools, most of them already present in Unix-like systems:
-
-- pdflatex ([TeX Live](https://www.tug.org/texlive/))
-- pdftoppm ([Poppler](https://poppler.freedesktop.org/))
-- png2ff ([farbfeld](https://tools.suckless.org/farbfeld/))
-- bzip2
-- unzip, find, mktemp, dirname (basic utilities)
-
-For Debian/Ubuntu, the full set can be installed with:
-
-```
-apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
-```
-
 ## Overview
 
 `tex2ff` is meant to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, such as the one at:
@@ -59,6 +43,22 @@ Each input `.zip` must contain one directory per project, and each such director
 ```
 
 The same layout applies to `2010.zip`, `2011.zip`, and so on. A single wrapping directory (e.g. `2009/2009-136-D/main.tex`) is also accepted, since `main.tex` is located by name rather than by fixed depth.
+
+## Dependencies
+
+`tex2ff` depends on the following tools, most of them already present in Unix-like systems:
+
+- pdflatex ([TeX Live](https://www.tug.org/texlive/))
+- pdftoppm ([Poppler](https://poppler.freedesktop.org/))
+- png2ff ([farbfeld](https://tools.suckless.org/farbfeld/))
+- bzip2
+- unzip, find, mktemp, dirname (basic utilities)
+
+For Debian/Ubuntu, the full set can be installed with:
+
+```
+apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
+```
 
 ## Usage
 
