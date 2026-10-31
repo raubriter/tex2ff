@@ -7,7 +7,7 @@ A helper script for [mt](https://github.com/raubriter/mt).
 `tex2ff` is meant to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, such as the one at:
 
 ```
-https://www.overleaf.com/project/6ae30f8db91643c343a814d7
+https://www.overleaf.com/project/6ae30f8db91643c343a814d7/share#d6d9bd9c5f929d0da5930b6a469dff31fb54f150b024923c
 ```
 
 That is to say, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos">ENEM between 2009 and 2025</a> are rewritten from scratch like this:
