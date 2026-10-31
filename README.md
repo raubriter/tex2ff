@@ -20,13 +20,17 @@ apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
 
 ## Overview
 
-`tex2ff` is meant to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from Overleaf in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, such as the one at:
+`tex2ff` is meant to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, such as the one at:
 
 ```
 https://www.overleaf.com/project/6ae30f8db91643c343a814d7
 ```
 
-The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` is then passed to `tex2ff`, which produces one `.bz2` per project. Automatic download is intentionally out of scope — the Overleaf endpoint requires an authenticated session cookie.
+That is to say, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos">ENEM between 2009 and 2025</a> are rewritten from scratch like this:
+
+<img width="1913" height="926" alt="image" src="https://github.com/user-attachments/assets/94b9c17e-bc51-43f6-8bb2-18d0ff3dbf97" /><br/><br/>
+
+**NOTE:** The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` is then passed to `tex2ff`, which produces one `.bz2` per project. Automatic download is intentionally out of scope — the Overleaf endpoint requires an authenticated session cookie.
 
 ## Expected structure
 
