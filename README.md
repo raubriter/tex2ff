@@ -71,7 +71,8 @@ Each `.zip` is extracted to a temporary directory, every `main.tex` found inside
 Example:
 
 ```
-tex2ff 2009.zip 2010.zip 2011.zip
+chmod +x tex2ff.sh
+./tex2ff.sh 2009.zip 2010.zip 2011.zip
 ```
 
 Given the `2009.zip` above, the script produces:
