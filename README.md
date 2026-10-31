@@ -16,7 +16,7 @@ That is to say, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-a
 
 **NOTE:** The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` is then passed to `tex2ff`, which produces one `.bz2` per project. Automatic download is intentionally out of scope — the Overleaf endpoint requires an authenticated session cookie.
 
-## Expected structure
+## Structure
 
 Each input `.zip` must contain one directory per project, and each such directory must contain a `main.tex`:
 
