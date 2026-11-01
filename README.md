@@ -4,21 +4,19 @@ A helper script for [mt](https://github.com/raubriter/mt).
 
 ## Overview
 
-`tex2ff` is intended to be used with [mt](https://github.com/raubriter/mt) on LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) in the pattern described [here](https://github.com/raubriter/mt/blob/main/data/list.txt). The TeX files and their figures are stored in Overleaf, as in the project at:
+`tex2ff` converts LaTeX project archives exported from [Overleaf](https://www.overleaf.com/) into the `.ff.bz2` question files consumed by [`mt`](https://github.com/raubriter/mt).
+
+The source projects (ENEM 2009–2025, rewritten from scratch) live on Overleaf, e.g.:
 
 ```
 https://www.overleaf.com/project/6ae30f8db91643c343a814d7/share#d6d9bd9c5f929d0da5930b6a469dff31fb54f150b024923c
 ```
 
-That is, all tests from <a href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/provas-e-gabaritos">ENEM between 2009 and 2025</a> are rewritten from scratch as follows:
+**Note:** Each archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)`). The Overleaf endpoint requires an authenticated session cookie, so automatic download is intentionally out of scope.
 
-<img width="1913" height="926" alt="image" src="https://github.com/user-attachments/assets/94b9c17e-bc51-43f6-8bb2-18d0ff3dbf97" /><br/><br/>
+## Input
 
-**Note:** The archive must be downloaded **manually** from Overleaf (`File → Download → Source (.zip)` in the editor). The resulting `.zip` file is then passed to `tex2ff`, which produces one `.bz2` file per project. Automatic download is intentionally out of scope; the Overleaf endpoint requires an authenticated session cookie.
-
-## Structure
-
-Each input `.zip` must contain one directory per project, and each such directory must contain a `main.tex` file:
+Each `.zip` contains one directory per question, each with a `main.tex` (and optional figures). The directory name encodes the question ID and its answer as the last character:
 
 ```
 2009.zip
@@ -28,33 +26,31 @@ Each input `.zip` must contain one directory per project, and each such director
 ├── 2009-137-E
 │   ├── fig1.png
 │   └── main.tex
-├── 2009-138-C
-│   ├── fig1.png
-│   └── main.tex
-├── 2009-139-A
-│   ├── fig1.png
-│   └── main.tex
-├── 2009-140-D
-│   └── main.tex
-├── 2009-141-C
-│   ├── fig1.png
-│   └── main.tex
 └── ...
 ```
 
-The same layout applies to `2010.zip`, `2011.zip`, and so on. A single wrapping directory (e.g., `2009/2009-136-D/main.tex`) is also accepted, since `main.tex` is located by name rather than by fixed depth.
+A single wrapping directory (e.g., `2009/2009-136-D/main.tex`) is also accepted, since `main.tex` is located by name rather than by fixed depth.
+
+## Output
+
+For each project, `tex2ff` writes `<project>.ff.bz2` next to the caller:
+
+```
+2009-136-D.ff.bz2
+2009-137-E.ff.bz2
+...
+```
+
+Temporary files are removed on exit, including on failure.
 
 ## Dependencies
 
-`tex2ff` depends on the following tools, most of which are already present in Unix-like systems:
+- `pdflatex` ([TeX Live](https://www.tug.org/texlive/))
+- `pdftoppm` ([Poppler](https://poppler.freedesktop.org/))
+- `png2ff` ([farbfeld](https://tools.suckless.org/farbfeld/))
+- `bzip2`, `unzip`, `find`, `mktemp`, `dirname`
 
-- pdflatex ([TeX Live](https://www.tug.org/texlive/))
-- pdftoppm ([Poppler](https://poppler.freedesktop.org/))
-- png2ff ([farbfeld](https://tools.suckless.org/farbfeld/))
-- bzip2
-- unzip, find, mktemp, dirname (basic utilities)
-
-For Debian/Ubuntu, the full set can be installed with:
+On Debian/Ubuntu:
 
 ```
 apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
@@ -66,7 +62,7 @@ apt install texlive-latex-base poppler-utils farbfeld bzip2 unzip
 tex2ff archive.zip [...]
 ```
 
-Each `.zip` file is extracted to a temporary directory, every `main.tex` found inside is compiled, and the result is written next to the caller as `<project>.ff.bz2`, where `<project>` is the name of the directory containing `main.tex`.
+Each archive is extracted to a temporary directory, every `main.tex` inside is compiled, and the result is written as `<project>.ff.bz2`.
 
 Example:
 
@@ -75,21 +71,6 @@ chmod +x tex2ff.sh
 ./tex2ff.sh 2009.zip 2010.zip 2011.zip
 ```
 
-Given the `2009.zip` above, the script produces:
-
-```
-2009-136-D.ff.bz2
-2009-137-E.ff.bz2
-2009-138-C.ff.bz2
-2009-139-A.ff.bz2
-2009-140-D.ff.bz2
-2009-141-C.ff.bz2
-```
-
-Temporary files are removed on exit, including when a conversion fails.
-
 ## License
 
-Distributed under the GNU General Public License v3 or later (GPLv3+).
-
-See the *LICENSE* file or visit: https://www.gnu.org/licenses/gpl-3.0.html
+GNU General Public License v3 or later (GPLv3+). See the *LICENSE* file or <https://www.gnu.org/licenses/gpl-3.0.html>.
